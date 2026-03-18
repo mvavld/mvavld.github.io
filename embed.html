@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oggy Shop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: transparent;
+        }
+        .phone-frame {
+            width: 420px;
+            height: 910px;
+            padding: 18px 10px 22px;
+            background: #1c1c1e;
+            border-radius: 48px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5), inset 0 0 0 3px #2c2c2e;
+        }
+        .phone-screen {
+            width: 402px;
+            height: 874px;
+            border-radius: 42px;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+        }
+        .status-bar {
+            height: 47px;
+            min-height: 47px;
+            background: #ffffff;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .status-bar-icons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .status-bar-icons svg {
+            height: 13px;
+            width: auto;
+        }
+        .app-content {
+            flex: 1;
+            min-height: 0;
+        }
+        .app-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .home-indicator {
+            height: 35px;
+            min-height: 35px;
+            background: #ffffff;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .home-indicator::after {
+            content: '';
+            width: 134px;
+            height: 5px;
+            background: #000000;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <div class="status-bar-icons">
+                    <svg viewBox="0 0 78 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.35" d="M54 0.5H71C72.933 0.5 74.5 2.067 74.5 4V9C74.5 10.933 72.933 12.5 71 12.5H54C52.067 12.5 50.5 10.933 50.5 9V4C50.5 2.067 52.067 0.5 54 0.5Z" stroke="currentColor"/>
+                        <path opacity="0.4" d="M76 5V9.22034C76.8491 8.86291 77.4012 8.0314 77.4012 7.11017C77.4012 6.18894 76.8491 5.35744 76 5Z" fill="currentColor"/>
+                        <path d="M52 4C52 2.89543 52.8954 2 54 2H71C72.1046 2 73 2.89543 73 4V9C73 10.1046 72.1046 11 71 11H54C52.8954 11 52 10.1046 52 9V4Z" fill="currentColor"/>
+                        <path d="M32.1152 9.91895C33.5351 8.6935 35.6145 8.69331 37.0342 9.91895C37.1056 9.98488 37.1474 10.0785 37.1494 10.1768C37.1513 10.2749 37.1135 10.3697 37.0449 10.4385L34.8213 12.7285C34.7561 12.7958 34.6669 12.834 34.5742 12.834C34.4816 12.8339 34.3932 12.7957 34.3281 12.7285L32.1045 10.4385C32.0358 10.3696 31.998 10.275 32 10.1768C32.002 10.0785 32.0437 9.98483 32.1152 9.91895ZM29.1094 7.17871C32.1685 4.27415 36.9058 4.27413 39.9648 7.17871C40.0337 7.24679 40.0732 7.34063 40.0742 7.43848C40.0751 7.53632 40.0373 7.63078 39.9697 7.7002L38.6846 9.02539C38.5522 9.16068 38.338 9.16379 38.2021 9.03223C37.1976 8.1037 35.8904 7.58878 34.5352 7.58887C33.1809 7.58951 31.8749 8.10438 30.8711 9.03223C30.7352 9.16368 30.521 9.16064 30.3887 9.02539L29.1045 7.7002C29.0368 7.63086 28.9992 7.53638 29 7.43848C29.0009 7.34043 29.0403 7.24682 29.1094 7.17871ZM26.1064 4.44238C30.7984 -0.1474 38.2007 -0.1474 42.8926 4.44238C42.9603 4.51045 42.9983 4.60317 42.999 4.7002C42.9996 4.79734 42.9625 4.89099 42.8955 4.95996L41.6084 6.28613C41.4758 6.42189 41.2605 6.42388 41.126 6.29004C39.3384 4.55531 36.9665 3.58801 34.5 3.58789C32.0332 3.58788 29.6609 4.55516 27.873 6.29004C27.7386 6.42407 27.5231 6.42218 27.3906 6.28613L26.1035 4.95996C26.0365 4.89093 25.9994 4.79738 26 4.7002C26.0007 4.60319 26.0387 4.51041 26.1064 4.44238Z" fill="currentColor"/>
+                        <path d="M10 4C10 3.44772 10.4477 3 11 3H12C12.5523 3 13 3.44772 13 4V12C13 12.5523 12.5523 13 12 13H11C10.4477 13 10 12.5523 10 12V4Z" fill="currentColor"/>
+                        <path d="M15 2C15 1.44772 15.4477 1 16 1H17C17.5523 1 18 1.44772 18 2V12C18 12.5523 17.5523 13 17 13H16C15.4477 13 15 12.5523 15 12V2Z" fill="currentColor"/>
+                        <path d="M5 7.5C5 6.94772 5.44772 6.5 6 6.5H7C7.55228 6.5 8 6.94772 8 7.5V12C8 12.5523 7.55228 13 7 13H6C5.44772 13 5 12.5523 5 12V7.5Z" fill="currentColor"/>
+                        <path d="M0 10C0 9.44772 0.447715 9 1 9H2C2.55228 9 3 9.44772 3 10V12C3 12.5523 2.55228 13 2 13H1C0.447715 13 0 12.5523 0 12V10Z" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="app-content">
+                <iframe id="app" src="index.html" title="Oggy Shop"></iframe>
+            </div>
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var app = document.getElementById('app');
+            window.addEventListener('message', function(e) {
+                if (e.source === app.contentWindow) {
+                    window.parent.postMessage(e.data, '*');
+                } else if (app.contentWindow) {
+                    app.contentWindow.postMessage(e.data, '*');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

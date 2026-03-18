@@ -1,0 +1,22 @@
+{
+  "ignoredPatterns": [
+    "connection reset",
+    "software caused connection abort",
+    "no route to host",
+    "host is down",
+    "broken pipe",
+    "connection refused",
+    "handshake error",
+    "connection timed out",
+    "certificate_verify_failed",
+    "network error",
+    "timeout",
+    "connection lost",
+    "failed to connect",
+    "unable to resolve host",
+    "dns lookup failed",
+    "setstate() called after dispose()",
+    "widget unmounted",
+    "widget disposed"
+  ]
+}
