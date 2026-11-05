@@ -22,6 +22,66 @@
   <title>MonAmie — Собери косметичку</title>
   <link rel="manifest" href="manifest.json">
 
+  <script>
+    // Какой вариант сборки получит браузер, и предзагрузка файлов до старта Flutter.
+    (function () {
+      var version = /Version\/(\d+)\.(\d+)/.exec(navigator.userAgent);
+      var isApple = navigator.vendor === 'Apple Computer, Inc.';
+      // Bootstrap 3.47 проверяет только WasmGC, а сборке нужны еще JS String Builtins и exnref:
+      // они есть с Safari 26.2. Более старый Safari должен остаться на JS + CanvasKit.
+      var safariWasm = isApple && !!version &&
+        (Number(version[1]) > 26 || (Number(version[1]) === 26 && Number(version[2]) >= 2));
+      var blink = navigator.vendor === 'Google Inc.' || navigator.userAgent.indexOf('Edg/') >= 0;
+      var wasm = blink || safariWasm;
+      window.monamieRuntime = { safariWasm: safariWasm };
+
+      function preload(href, as, priority, rel) {
+        var link = document.createElement('link');
+        link.rel = rel || 'preload';
+        link.href = href;
+        if (as) link.as = as;
+        if (as === 'fetch') link.crossOrigin = 'anonymous';
+        if (priority) link.fetchPriority = priority;
+        document.head.appendChild(link);
+      }
+
+      // Движок и код игры — самое тяжелое и нужное, качаем сразу и параллельно.
+      if (wasm) {
+        preload('main.dart.wasm', 'fetch', 'high');
+        preload('canvaskit/skwasm.wasm', 'fetch', 'high');
+        preload('main.dart.mjs', null, 'high', 'modulepreload');
+        preload('canvaskit/skwasm.js', null, 'high', 'modulepreload');
+      } else {
+        preload('main.dart.js', 'script', 'high');
+        preload('canvaskit/canvaskit.wasm', 'fetch', 'high');
+      }
+
+      // Данные первого экрана. Низкий приоритет, чтобы не мешать загрузке движка.
+      [
+        'assets/FontManifest.json',
+        'assets/assets/fonts/IBMPlexSans-Light.ttf',
+        'assets/assets/fonts/IBMPlexSans-Regular.ttf',
+        'assets/assets/fonts/IBMPlexSans-Medium.ttf',
+        'assets/assets/data/collection.json',
+        'assets/assets/images/gem_stone.png',
+        'assets/assets/images/magnet.png',
+        'assets/assets/images/cloud.png',
+        'assets/assets/images/lipstick.png',
+        'assets/assets/images/mirror.png',
+        'assets/assets/images/sparkles.png',
+        'assets/assets/products/lipstick.png',
+        'assets/assets/products/nail_polish.png',
+        'assets/assets/products/lotion_bottle.png',
+        'assets/assets/products/soap.png',
+        'assets/assets/products/sponge.png',
+        'assets/assets/products/mirror.png',
+        'assets/assets/products/purse.png',
+        'assets/assets/products/rose.png',
+        'assets/assets/products/bubbles.png',
+      ].forEach(function (href) { preload(href, 'fetch', 'low'); });
+    })();
+  </script>
+
   <style>
     html, body {
       margin: 0;
