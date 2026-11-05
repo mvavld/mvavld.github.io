@@ -1,0 +1,15 @@
+{
+  "title": "Подборка недели",
+  "collectionUrl": "https://www.monamie.kz/",
+  "products": [
+    { "id": "lipstick", "title": "Помада для губ матовая", "image": "assets/products/lipstick.png", "url": "https://www.monamie.kz/" },
+    { "id": "nail-polish", "title": "Лак для ногтей стойкий", "image": "assets/products/nail_polish.png", "url": "https://www.monamie.kz/" },
+    { "id": "lotion", "title": "Увлажняющий лосьон для тела", "image": "assets/products/lotion_bottle.png", "url": "https://www.monamie.kz/" },
+    { "id": "soap", "title": "Мыло ручной работы", "image": "assets/products/soap.png", "url": "https://www.monamie.kz/" },
+    { "id": "sponge", "title": "Спонж для макияжа", "image": "assets/products/sponge.png", "url": "https://www.monamie.kz/" },
+    { "id": "mirror", "title": "Компактное зеркало", "image": "assets/products/mirror.png", "url": "https://www.monamie.kz/" },
+    { "id": "purse", "title": "Косметичка мини", "image": "assets/products/purse.png", "url": "https://www.monamie.kz/" },
+    { "id": "rose", "title": "Парфюмерная вода «Роза»", "image": "assets/products/rose.png", "url": "https://www.monamie.kz/" },
+    { "id": "bubbles", "title": "Пена для ванны", "image": "assets/products/bubbles.png", "url": "https://www.monamie.kz/" }
+  ]
+}

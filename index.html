@@ -1,32 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Oggy Shop">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Собери косметичку — лови товары из подборки MonAmie и получай призы.">
+  <meta name="theme-color" content="#FAF5F7">
 
-  <!-- iOS meta tags & icons -->
+  <meta property="og:title" content="MonAmie — Собери косметичку">
+  <meta property="og:description" content="Лови товары из подборки MonAmie и получай призы.">
+
+  <!-- iOS -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Oggy Shop">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="MonAmie">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>Oggy Shop</title>
+  <title>MonAmie — Собери косметичку</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "320502606";
-  </script>
-  <!-- This script adds the flutter initialization JS inline -->
-  <script src="flutter_bootstrap.js" async></script>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: linear-gradient(135deg, #FAF5F7, #FFE0ED);
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Сплэш, пока грузится движок Flutter (первая загрузка ~2–3 МБ). */
+    #splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #595959;
+      transition: opacity .3s ease;
+      z-index: 10;
+    }
+    #splash.hidden { opacity: 0; pointer-events: none; }
+    #splash .logo {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 6px;
+      background: linear-gradient(90deg, #B32CA1, #E40E7F, #FE85C5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #splash .bag {
+      width: 96px;
+      height: 68px;
+      border-radius: 14px 14px 26px 26px;
+      background: linear-gradient(45deg, #B32CA1, #E40E7F, #FE85C5);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, .12);
+      animation: bounce 1s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) scale(1, 1); }
+      50% { transform: translateY(-10px) scale(1.04, .96); }
+    }
+    #splash .text { font-size: 14px; }
+  </style>
 </head>
 <body>
+  <div id="splash" aria-live="polite">
+    <div class="logo">MONAMIE</div>
+    <div class="bag"></div>
+    <div class="text">Собираем косметичку…</div>
+  </div>
+  <script>
+    // Прячем сплэш после первого кадра Flutter.
+    window.addEventListener('flutter-first-frame', function () {
+      var splash = document.getElementById('splash');
+      if (!splash) return;
+      splash.classList.add('hidden');
+      setTimeout(function () { splash.remove(); }, 400);
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
