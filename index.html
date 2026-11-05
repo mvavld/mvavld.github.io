@@ -67,17 +67,41 @@
       50% { transform: translateY(-10px) scale(1.04, .96); }
     }
     #splash .text { font-size: 14px; }
+    #splash button {
+      display: none;
+      height: 44px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 8px;
+      background: #000;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #splash.failed .bag { animation: none; }
+    #splash.failed button { display: block; }
   </style>
 </head>
 <body>
   <div id="splash" aria-live="polite">
     <div class="logo">MONAMIE</div>
     <div class="bag"></div>
-    <div class="text">Собираем косметичку…</div>
+    <div class="text" id="splash-text">Собираем косметичку…</div>
+    <button type="button" onclick="location.reload()">Обновить</button>
   </div>
   <script>
+    // Если движок не загрузился (плохая связь), не оставляем пользователя с вечной анимацией.
+    var splashTimeout = setTimeout(function () {
+      var splash = document.getElementById('splash');
+      if (!splash) return;
+      splash.classList.add('failed');
+      document.getElementById('splash-text').textContent = 'Не получилось загрузить игру. Проверьте интернет.';
+    }, 20000);
+
     // Прячем сплэш после первого кадра Flutter.
     window.addEventListener('flutter-first-frame', function () {
+      clearTimeout(splashTimeout);
       var splash = document.getElementById('splash');
       if (!splash) return;
       splash.classList.add('hidden');
